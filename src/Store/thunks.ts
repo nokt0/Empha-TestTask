@@ -1,6 +1,6 @@
-import {deleteCookie, setCookie} from "./cookieHelpers";
-import {setLoginStatus} from "./actions";
-import {API, AppThunk, LoginStatus} from "./types";
+import {checkToken, deleteCookie, getCookie, setCookie} from "./cookieHelpers";
+import {setLoginStatus, setUsers} from "./actions";
+import {API, AppThunk, LoginStatus, UsersFetchStatus} from "./types";
 
 export const thunkLogin = (log: string, pass: string): AppThunk => async dispatch => {
     await thunkLogout();
@@ -22,7 +22,7 @@ export const thunkLogin = (log: string, pass: string): AppThunk => async dispatc
         })
         .then((response) => response.json())
         .then((token) => {
-            setCookie("token",token.token,{'max-age': Date.now() + 2_592_000}) //30 дней
+            setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) //30 дней
             dispatch(setLoginStatus(LoginStatus.LOGIN_SUCCESSFUL))
             return token
         })
@@ -34,4 +34,32 @@ export const thunkLogin = (log: string, pass: string): AppThunk => async dispatc
 export const thunkLogout = (): AppThunk => async dispatch => {
     dispatch(setLoginStatus(LoginStatus.NOT_LOGGED_IN))
     deleteCookie("token")
+}
+
+export const thunkFetchUsers = (): AppThunk => async dispatch => {
+
+    dispatch(setUsers([],UsersFetchStatus.NOT_FETCHED))
+
+    if (!checkToken() && process.env.NODE_ENV !== "test") {
+        return dispatch(thunkLogout())
+    }
+    const token = getCookie("token");
+
+    const api = `${API}/api/v1/users/`;
+    return await fetch(api, {
+        headers: {'Authorization': `Token ${token}`}
+    }).then((response) => {
+        if (!response.ok) {
+            dispatch(setUsers([], UsersFetchStatus.FETCHING_HAS_ERRORED, response.statusText))
+            throw new Error(response.statusText);
+        }
+        return response;
+    })
+        .then((response) => response.json())
+        .then((users) => {
+            return dispatch(setUsers(users, UsersFetchStatus.FETCHED_SUCCESSFUL))
+        })
+        .catch((error) => {
+            dispatch(setUsers([], UsersFetchStatus.FETCHING_HAS_ERRORED, error.message))
+        })
 }

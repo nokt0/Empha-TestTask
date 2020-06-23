@@ -1,14 +1,12 @@
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {loginReducer} from "./reducers";
+import {loginReducer, usersReducer} from "./reducers";
 import thunk from 'redux-thunk';
-import {LoginStatus} from "./types";
+import {LoginState, LoginStatus, UsersState} from "./types";
 
 export interface RootState {
-    login: {
-        loginStatus: LoginStatus,
-        loginErrorMsg: string
-    }
+    login: LoginState,
+    users: UsersState
 
 }
 
@@ -33,6 +31,7 @@ const logger = (store: { getState: () => any; }) =>
 
 const reducers = combineReducers({
     login: loginReducer,
+    users: usersReducer
 });
 
 const middleware = [saver, logger, thunk];

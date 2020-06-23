@@ -1,6 +1,15 @@
 import {loginReducer, usersReducer} from "../reducers";
-import {LOGIN_ACTION, LoginAction, LoginState, LoginStatus, SET_USERS_ACTION, UsersAction, UsersState} from "../types";
-import User from "../Model/User";
+import {
+    LOGIN_ACTION,
+    LoginAction,
+    LoginState,
+    LoginStatus,
+    SET_USERS_ACTION,
+    UsersAction,
+    UsersFetchStatus,
+    UsersState
+} from "../types";
+import {testUsers} from "./actions.test";
 
 describe('reducers', () => {
     it('LOGIN_IN_PROGRESS', () => {
@@ -22,24 +31,18 @@ describe('reducers', () => {
     })
 
     it('SET_USERS_ACTION', () => {
-        const users: User[] = [{
-            id:1,
-            username:"sd",
-            first_name:"fname",
-            last_name:"lname",
-            password:"2231ga",
-            is_active:true,
-            last_login:"12-01-2020",
-            is_superuser:false
-        }];
 
         const usersInitialState: UsersState = {
-            users: []
+            users: [],
+            fetchStatus: UsersFetchStatus.NOT_FETCHED,
+            fetchErrorMsg: ""
         }
 
         const action: UsersAction = {
             type: SET_USERS_ACTION,
-            users: users
+            users: testUsers,
+            fetchStatus: UsersFetchStatus.NOT_FETCHED,
+            fetchErrorMsg: ""
         }
         expect(usersReducer(usersInitialState,action)).toEqual({
             ...usersInitialState,

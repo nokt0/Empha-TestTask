@@ -1,4 +1,4 @@
-import {LOGIN_ACTION, LoginAction, LoginState, LoginStatus, UsersAction, UsersState} from "./types";
+import {LOGIN_ACTION, LoginAction, LoginState, LoginStatus, UsersAction, UsersFetchStatus, UsersState} from "./types";
 
 const loginInitialState: LoginState = {
     loginStatus: LoginStatus.NOT_LOGGED_IN,
@@ -6,7 +6,9 @@ const loginInitialState: LoginState = {
 }
 
 const usersInitialState: UsersState = {
-    users: []
+    users: [],
+    fetchStatus: UsersFetchStatus.NOT_FETCHED,
+    fetchErrorMsg: ""
 }
 
 export function loginReducer(state = loginInitialState, action: LoginAction): LoginState {
@@ -27,7 +29,8 @@ export function usersReducer(state = usersInitialState, action: UsersAction) {
         case "SET_USERS_ACTION":
             return {
                 ...state,
-                users: action.users
+                users: action.users,
+                fetchStatus: action.fetchStatus
             }
         default:
             return state

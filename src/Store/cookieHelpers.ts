@@ -35,3 +35,7 @@ export function deleteCookie(name: string) {
         'max-age': -1
     })
 }
+
+export function checkToken(): boolean {
+    return !!getCookie("token")
+}
