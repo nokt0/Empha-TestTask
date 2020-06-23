@@ -6,13 +6,11 @@ import * as serviceWorker from './serviceWorker';
 import storeCreator from "./Store/store";
 import {Provider} from "react-redux";
 
-const store = storeCreator();
+
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
             <App/>
-        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

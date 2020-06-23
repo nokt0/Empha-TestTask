@@ -6,9 +6,15 @@ import Welcome from "./Components/Welcome";
 import Users from "./Components/Users";
 import Login from "./Components/Login";
 import {Logout} from "./Components/Logout";
+import storeCreator from "./Store/store";
+import {Provider} from "react-redux";
+
+
+const store = storeCreator();
 
 function App() {
     return (
+        <Provider store={store}>
         <Router>
             <NavigationBar/>
             <Switch>
@@ -26,6 +32,7 @@ function App() {
                 </Route>
             </Switch>
         </Router>
+        </Provider>
     );
 }
 
