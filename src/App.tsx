@@ -1,13 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './App.css';
-import NavigationBar from "./NavigationBar";
-import {BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams} from "react-router-dom";
-import {Button, Form, FormControl, Nav, Navbar, Container, NavDropdown} from "react-bootstrap";
-import Welcome from "./Welcome";
-import Login from "./Login";
-import Users from "./Users";
+import NavigationBar from "./Components/NavigationBar";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Welcome from "./Components/Welcome";
+import Users from "./Components/Users";
+import Login from "./Components/Login";
+import {Logout} from "./Components/Logout";
 
 function App() {
     return (
@@ -22,6 +20,9 @@ function App() {
                 </Route>
                 <Route exact path="/users">
                     <Users/>
+                </Route>
+                <Route exact path="/logout">
+                    <Logout/>
                 </Route>
             </Switch>
         </Router>

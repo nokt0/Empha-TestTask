@@ -1,8 +1,15 @@
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap'
 import React from "react";
+import {useSelector} from "react-redux";
+import {RootState} from "../Store/store";
+import {LoginStatus} from "../Store/types";
 
 export default function NavigationBar() {
+
+    const selectLoginStatus = (state: RootState) => state.login.loginStatus
+    const loginStatus: any = useSelector(selectLoginStatus)
+
     return (
         <Navbar bg="light" expand="md">
             <LinkContainer to="/" exact={true}>
@@ -23,10 +30,20 @@ export default function NavigationBar() {
                         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
+
                 <Nav className="justify-content-end">
-                    <LinkContainer to="/login">
-                        <Nav.Link href="#login">Login</Nav.Link>
-                    </LinkContainer>
+                    {loginStatus === LoginStatus.LOGIN_SUCCESSFUL ?
+                        (
+                            <LinkContainer to="/logout">
+                                <Nav.Link href="#login">Logout</Nav.Link>
+                            </LinkContainer>
+                        ) :
+                        (
+                            <LinkContainer to="/login">
+                                <Nav.Link href="#login">Login</Nav.Link>
+                            </LinkContainer>
+                        )}
+
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
