@@ -38,8 +38,8 @@ export default function UsersTable() {
     }
 
     return (
-        <Table variant="dark" responsive className="text-break" striped bordered hover size="sm">
-            <thead>
+        <Table variant="dark" className="" responsive  bordered hover size="sm">
+            <thead >
             <tr>
                 <th>id</th>
                 <th>Username</th>

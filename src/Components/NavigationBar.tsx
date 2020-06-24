@@ -4,6 +4,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../Store/store";
 import {LoginStatus} from "../Store/types";
+import logo from "../logo.svg";
 
 export default function NavigationBar() {
 
@@ -11,9 +12,17 @@ export default function NavigationBar() {
     const loginStatus: any = useSelector(selectLoginStatus)
 
     return (
-        <Navbar bg="light" expand="md">
+        <Navbar bg="dark" variant="dark"  expand="md">
             <LinkContainer to="/" exact={true}>
-                <Navbar.Brand href="/">Emphasoft</Navbar.Brand>
+                <Navbar.Brand href="/">
+                    <img
+                        src={logo}
+                        width="150"
+                        height="30"
+                        className="d-inline-block align-top"
+                        alt="React Bootstrap logo"
+                    />
+                </Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">

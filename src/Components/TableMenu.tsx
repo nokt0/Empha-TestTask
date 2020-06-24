@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Spinner} from "react-bootstrap";
+import {Button, Card, Col, Form, Spinner} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {changeUserTableFilter, changeUserTableSortType} from "../Store/actions";
 import {thunkFetchUsers} from "../Store/thunks";
@@ -14,6 +14,7 @@ export function TableMenu() {
     const selectSortType: any = useSelector((state: RootState) => state.userTable.sortType)
     const [filterWord, setFilterWord] = useState("")
     const [sortingType, setSortingType] = useState("ASC")
+
     useEffect(() => {
         setFilterWord(usernameFilterWord)
         if (selectSortType === SortType.ASCENDING) {
@@ -39,38 +40,52 @@ export function TableMenu() {
 
     return (
         <div>
-            <Form.Group>
-                <Form inline>
-                    <Form.Label>Filter:</Form.Label>
-                    <Form.Control type="text" placeholder="username" value={filterWord}
-                                  onChange={event => {
-                                      setFilterWord(event.target.value)
-                                      return dispatch(changeUserTableFilter(event.target.value))
-                                  }}>
-                    </Form.Control>
-                    <Form.Label>Sort:</Form.Label>
-                    <Form.Control as="select" className="mr-sm-2" custom value={sortingType}
-                                  onChange={event => {
-                                      setSortingType(event.target.value)
-                                      return dispatchSortType(event.target.value)
-                                  }}>
-                        <option value="ASC">Ascending</option>
-                        <option value="DESC">Descending</option>
-                    </Form.Control>
-                    {fetchStatus === UsersFetchStatus.FETCHING_IN_PROGRESS
-                        ? (<Button variant="primary" disabled>
-                            <Spinner
-                                as="span"
-                                animation="grow"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                            />
-                            Loading...
-                        </Button>)
-                        : (<Button onClick={() => dispatch(thunkFetchUsers())}>Refresh</Button>)
-                    }
-                </Form>
-            </Form.Group>
+            <Card bg="light">
+                <Card.Header>Menu</Card.Header>
+                <Card.Body>
+                    <Form>
+                        <Form.Row className="align-items-end">
+                            <Col md="auto" xs="12">
+                                <Form.Label>Filter:</Form.Label>
+                                <Form.Control type="text" placeholder="username" value={filterWord}
+                                              onChange={event => {
+                                                  setFilterWord(event.target.value)
+                                                  return dispatch(changeUserTableFilter(event.target.value))
+                                              }}>
+                                </Form.Control>
+                            </Col>
+                            <Col md="auto" xs="8">
+                                <Form.Label>Sort:</Form.Label>
+                                <Form.Control as="select" className="mr-sm-2" custom value={sortingType}
+                                              onChange={event => {
+                                                  setSortingType(event.target.value)
+                                                  return dispatchSortType(event.target.value)
+                                              }}>
+                                    <option value="ASC">Ascending</option>
+                                    <option value="DESC">Descending</option>
+                                </Form.Control>
+                            </Col>
+                            <Col md="auto" xs="4">
+                                {fetchStatus === UsersFetchStatus.FETCHING_IN_PROGRESS
+                                ? (<Button variant="primary" disabled>
+                                    <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    Loading...
+                                </Button>)
+                                    : (<Col xs="auto"><Button onClick={() => dispatch(thunkFetchUsers())}>Refresh</Button></Col>)
+                            }
+                            </Col>
+                        </Form.Row>
+
+
+                    </Form>
+                </Card.Body>
+            </Card>
+
         </div>)
 }
