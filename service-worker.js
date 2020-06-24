@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Empha-TestTask/precache-manifest.8e282cac640db112ccc1144334086267.js"
+  "/Empha-TestTask/precache-manifest.1c747324b06fc3bca25e0b754ef8bb95.js"
 );
 
 self.addEventListener('message', (event) => {
