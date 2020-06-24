@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from "./Components/NavigationBar";
-import {HashRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Welcome from "./Components/Welcome";
 import Users from "./Components/Users";
 import Login from "./Components/Login";
@@ -15,7 +15,7 @@ const store = storeCreator();
 function App() {
     return (
         <Provider store={store}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <NavigationBar/>
             <Switch>
                 <Route exact path="/">
