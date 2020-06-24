@@ -8,6 +8,7 @@ export const SET_USERS_ACTION = 'SET_USERS_ACTION'
 export const API = 'https://emphasoft-test-assignment.herokuapp.com'
 export const USER_TABLE_FILTER_ACTION = "USER_TABLE_FILTER_ACTION"
 export const USER_TABLE_SORT_TYPE_ACTION = "USER_TABLE_SORT_TYPE_ACTION"
+export const REMEMBER_ME_ACTION = "REMEMBER_ME_ACTION"
 
 export enum SortType {
     ASCENDING = "ASCENDING",
@@ -30,11 +31,14 @@ export enum UsersFetchStatus {
 
 export interface LoginState {
     loginStatus: LoginStatus,
-    loginErrorMsg: string
+    loginErrorMsg: string,
+    remember: boolean
 }
 
-export interface LoginAction extends LoginState {
-    type: typeof LOGIN_ACTION
+export interface LoginAction {
+    type: typeof LOGIN_ACTION,
+    loginStatus: LoginStatus,
+    loginErrorMsg: string
 }
 
 export interface UsersState {
@@ -60,6 +64,11 @@ export interface UserTableFilterAction {
 export interface UserTableSortTypeAction {
     type: typeof USER_TABLE_SORT_TYPE_ACTION,
     sortType: SortType
+}
+
+export interface RememberMeAction {
+    type: typeof REMEMBER_ME_ACTION,
+    remember: boolean
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,

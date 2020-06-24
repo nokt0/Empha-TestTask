@@ -6,9 +6,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {LoginStatus} from "../Store/types";
 import {thunkLogin} from "../Store/thunks";
 
-export default function Login(props: any) {
+export default function Login() {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false)
 
     const selectLoginStatus = (state: RootState) => state.login.loginStatus
     const loginStatus: any = useSelector(selectLoginStatus)
@@ -16,7 +17,7 @@ export default function Login(props: any) {
 
     function submit(event: ChangeEvent<any>) {
         event.preventDefault()
-        dispatch(thunkLogin(login, password))
+        dispatch(thunkLogin(login, password, rememberMe))
     }
 
     return (
@@ -40,7 +41,9 @@ export default function Login(props: any) {
                                                   onChange={(event) => setPassword(event.target.value)}/>
                                 </Form.Group>
                                 <Form.Group controlId="formBasicCheckbox">
-                                    <Form.Check type="checkbox" label="Check me out"/>
+                                    {/* tslint:disable-next-line:no-console */}
+                                    <Form.Check onChange={(event: ChangeEvent<any>) => setRememberMe(event.target.checked)} type="checkbox"
+                                                label="Check me out"/>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Submit

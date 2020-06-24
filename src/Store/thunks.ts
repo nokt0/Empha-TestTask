@@ -2,7 +2,7 @@ import {checkToken, deleteCookie, getCookie, setCookie} from "./cookieHelpers";
 import {setLoginStatus, setUsers} from "./actions";
 import {API, AppThunk, LoginStatus, UsersFetchStatus} from "./types";
 
-export const thunkLogin = (log: string, pass: string): AppThunk => async dispatch => {
+export const thunkLogin = (log: string, pass: string, remember: boolean = false): AppThunk => async dispatch => {
     await thunkLogout();
     dispatch(setLoginStatus(LoginStatus.LOGIN_IN_PROGRESS));
     const body = {username: log, password: pass};
@@ -22,7 +22,11 @@ export const thunkLogin = (log: string, pass: string): AppThunk => async dispatc
         })
         .then((response) => response.json())
         .then((token) => {
-            setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) // 30 дней
+            if (remember) {
+                setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) // 30 дней
+            } else {
+                setCookie("token", token.token, {})
+            }
             dispatch(setLoginStatus(LoginStatus.LOGIN_SUCCESSFUL))
             return token
         })
@@ -38,13 +42,13 @@ export const thunkLogout = (): AppThunk => async dispatch => {
 
 export const thunkFetchUsers = (): AppThunk => async dispatch => {
 
-    dispatch(setUsers([],UsersFetchStatus.NOT_FETCHED))
+    dispatch(setUsers([], UsersFetchStatus.NOT_FETCHED))
 
     if (!checkToken() && process.env.NODE_ENV !== "test") {
         return dispatch(thunkLogout())
     }
     const token = getCookie("token");
-    dispatch(setUsers([],UsersFetchStatus.FETCHING_IN_PROGRESS))
+    dispatch(setUsers([], UsersFetchStatus.FETCHING_IN_PROGRESS))
 
     const api = `${API}/api/v1/users/`;
     return await fetch(api, {

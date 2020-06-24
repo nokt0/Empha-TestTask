@@ -3,6 +3,8 @@ import {
     LoginAction,
     LoginState,
     LoginStatus,
+    REMEMBER_ME_ACTION,
+    RememberMeAction,
     SortType,
     UsersAction,
     UsersFetchStatus,
@@ -14,7 +16,8 @@ import {
 
 const loginInitialState: LoginState = {
     loginStatus: LoginStatus.NOT_LOGGED_IN,
-    loginErrorMsg: ""
+    loginErrorMsg: "",
+    remember: false
 }
 
 const usersInitialState: UsersState = {
@@ -28,13 +31,18 @@ const userTableInitialState: UserTableSettingsState = {
     usernameFilterWord: ""
 }
 
-export function loginReducer(state = loginInitialState, action: LoginAction): LoginState {
+export function loginReducer(state = loginInitialState, action: LoginAction | RememberMeAction): LoginState {
     switch (action.type) {
         case LOGIN_ACTION:
             return {
                 ...state,
                 loginStatus: action.loginStatus,
                 loginErrorMsg: action.loginErrorMsg
+            }
+        case REMEMBER_ME_ACTION:
+            return {
+                ...state,
+                remember: action.remember
             }
         default:
             return state;
@@ -54,7 +62,7 @@ export function usersReducer(state = usersInitialState, action: UsersAction): Us
     }
 }
 
-export function userTableSettingsReducer(state = userTableInitialState, action: UserTableFilterAction | UserTableSortTypeAction) : UserTableSettingsState {
+export function userTableSettingsReducer(state = userTableInitialState, action: UserTableFilterAction | UserTableSortTypeAction): UserTableSettingsState {
     switch (action.type) {
         case "USER_TABLE_FILTER_ACTION":
             return {
