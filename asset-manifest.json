@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Empha-TestTask/static/css/main.1c3fdcaf.chunk.css",
-    "main.js": "/Empha-TestTask/static/js/main.f17b4a3a.chunk.js",
-    "main.js.map": "/Empha-TestTask/static/js/main.f17b4a3a.chunk.js.map",
+    "main.js": "/Empha-TestTask/static/js/main.09a26156.chunk.js",
+    "main.js.map": "/Empha-TestTask/static/js/main.09a26156.chunk.js.map",
     "runtime-main.js": "/Empha-TestTask/static/js/runtime-main.19e685f6.js",
     "runtime-main.js.map": "/Empha-TestTask/static/js/runtime-main.19e685f6.js.map",
     "static/css/2.af3c1da9.chunk.css": "/Empha-TestTask/static/css/2.af3c1da9.chunk.css",
     "static/js/2.824ec24b.chunk.js": "/Empha-TestTask/static/js/2.824ec24b.chunk.js",
     "static/js/2.824ec24b.chunk.js.map": "/Empha-TestTask/static/js/2.824ec24b.chunk.js.map",
     "index.html": "/Empha-TestTask/index.html",
-    "precache-manifest.e8d420a0f11bae1ab34072814dd07d75.js": "/Empha-TestTask/precache-manifest.e8d420a0f11bae1ab34072814dd07d75.js",
+    "precache-manifest.d8553475b8e0ccbf3f1e89d8aa2e6c71.js": "/Empha-TestTask/precache-manifest.d8553475b8e0ccbf3f1e89d8aa2e6c71.js",
     "service-worker.js": "/Empha-TestTask/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/Empha-TestTask/static/css/2.af3c1da9.chunk.css.map",
     "static/css/main.1c3fdcaf.chunk.css.map": "/Empha-TestTask/static/css/main.1c3fdcaf.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.824ec24b.chunk.js",
     "static/css/main.1c3fdcaf.chunk.css",
-    "static/js/main.f17b4a3a.chunk.js"
+    "static/js/main.09a26156.chunk.js"
   ]
 }
