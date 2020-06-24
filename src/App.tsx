@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from "./Components/NavigationBar";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import Welcome from "./Components/Welcome";
 import Users from "./Components/Users";
 import Login from "./Components/Login";
