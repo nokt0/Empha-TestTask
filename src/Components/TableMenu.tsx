@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Form, Spinner} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {changeUserTableFilter, changeUserTableSortType} from "../Store/actions";
@@ -10,8 +10,7 @@ export function TableMenu() {
 
     const dispatch = useDispatch()
     const fetchStatus: UsersFetchStatus = useSelector((state: RootState) => state.users.fetchStatus)
-    dispatch(changeUserTableSortType(SortType.ASCENDING))
-    dispatch(changeUserTableFilter(""))
+    const [filterWord,setFilterWord] = useState("")
 
     function dispatchSortType(sortType: string) {
         {
@@ -31,8 +30,10 @@ export function TableMenu() {
             <Form.Group>
                 <Form inline>
                     <Form.Label>Filter:</Form.Label>
-                    <Form.Control type="text" placeholder="username"
-                                  onChange={event => dispatch(changeUserTableFilter(event.target.value))}>
+                    <Form.Control type="text" placeholder="username" value={filterWord}
+                                  onChange={event => {
+                                      setFilterWord(event.target.value)
+                                      return dispatch(changeUserTableFilter(event.target.value))}}>
                     </Form.Control>
                     <Form.Label>Sort:</Form.Label>
                     <Form.Control as="select" className="mr-sm-2" custom

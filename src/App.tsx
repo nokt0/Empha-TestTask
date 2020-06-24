@@ -15,7 +15,8 @@ const store = storeCreator();
 function App() {
     return (
         <Provider store={store}>
-        <Router basename={process.env.PUBLIC_URL}>
+
+        <Router basename="/Empha-TestTask">
             <NavigationBar/>
             <Switch>
                 <Route exact path="/">
