@@ -2,15 +2,16 @@ import React from "react";
 import {Jumbotron} from "react-bootstrap";
 import {TableMenu} from "./TableMenu";
 import UsersTable from "./UsersTable";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../Store/store";
 import {LoginStatus} from "../Store/types";
 import {Redirect} from "react-router-dom";
+import {thunkFetchUsers} from "../Store/thunks";
 
 export default function Users() {
     const loginStatus: LoginStatus = useSelector((state: RootState) => state.login.loginStatus)
-
-    // dispatch(thunkFetchUsers())
+    const dispatch = useDispatch();
+    dispatch(thunkFetchUsers())
 
     return (
         <div>

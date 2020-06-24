@@ -2,11 +2,10 @@ import User from "../Store/Model/User";
 import {Table} from "react-bootstrap";
 import React from "react";
 import {RootState} from "../Store/store";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {SortType} from "../Store/types";
 
 export default function UsersTable() {
-    useDispatch();
     const usersArray: any = useSelector((state: RootState) => state.users.users)
     const sortType: any = useSelector((state: RootState) => state.userTable.sortType)
     const usernameFilterWord: any = useSelector((state: RootState) => state.userTable.usernameFilterWord)
