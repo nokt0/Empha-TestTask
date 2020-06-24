@@ -1,13 +1,14 @@
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {loginReducer, usersReducer} from "./reducers";
+import {loginReducer, usersReducer, userTableSettingsReducer} from "./reducers";
 import thunk from 'redux-thunk';
-import {LoginState, LoginStatus, UsersState} from "./types";
+import {LoginState, UsersState, UserTableSettingsState} from "./types";
+// tslint:disable:no-console
 
 export interface RootState {
     login: LoginState,
     users: UsersState
-
+    userTable: UserTableSettingsState
 }
 
 const saver = (store: { getState: () => any; }) =>
@@ -31,7 +32,8 @@ const logger = (store: { getState: () => any; }) =>
 
 const reducers = combineReducers({
     login: loginReducer,
-    users: usersReducer
+    users: usersReducer,
+    userTable: userTableSettingsReducer
 });
 
 const middleware = [saver, logger, thunk];

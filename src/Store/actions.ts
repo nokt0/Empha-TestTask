@@ -1,5 +1,4 @@
 import {
-    CHANGE_USER_TABLE_FILTER,
     LOGIN_ACTION,
     LoginAction,
     LoginStatus,
@@ -18,10 +17,10 @@ export function setLoginStatus(status: LoginStatus, errorMsg = ""): LoginAction 
     }
 }
 
-export function setUsers(users: User[], status: UsersFetchStatus, message = ""): UsersAction {
+export function setUsers(usersArray: User[], status: UsersFetchStatus, message = ""): UsersAction {
     return {
         type: SET_USERS_ACTION,
-        users: users,
+        users: usersArray,
         fetchStatus: status,
         fetchErrorMsg: message
     }
@@ -34,10 +33,10 @@ export function changeUserTableFilter(filter: string) {
     }
 }
 
-export function changeUserTableSortType(sortType: SortType) {
+export function changeUserTableSortType(sort: SortType) {
     return {
         type: USER_TABLE_SORT_TYPE_ACTION,
-        sortType: sortType
+        sortType: sort
     }
 }
 

@@ -1,4 +1,16 @@
-import {LOGIN_ACTION, LoginAction, LoginState, LoginStatus, UsersAction, UsersFetchStatus, UsersState} from "./types";
+import {
+    LOGIN_ACTION,
+    LoginAction,
+    LoginState,
+    LoginStatus,
+    SortType,
+    UsersAction,
+    UsersFetchStatus,
+    UsersState,
+    UserTableFilterAction,
+    UserTableSettingsState,
+    UserTableSortTypeAction
+} from "./types";
 
 const loginInitialState: LoginState = {
     loginStatus: LoginStatus.NOT_LOGGED_IN,
@@ -9,6 +21,11 @@ const usersInitialState: UsersState = {
     users: [],
     fetchStatus: UsersFetchStatus.NOT_FETCHED,
     fetchErrorMsg: ""
+}
+
+const userTableInitialState: UserTableSettingsState = {
+    sortType: SortType.ASCENDING,
+    usernameFilterWord: ""
 }
 
 export function loginReducer(state = loginInitialState, action: LoginAction): LoginState {
@@ -24,7 +41,7 @@ export function loginReducer(state = loginInitialState, action: LoginAction): Lo
     }
 }
 
-export function usersReducer(state = usersInitialState, action: UsersAction) {
+export function usersReducer(state = usersInitialState, action: UsersAction): UsersState {
     switch (action.type) {
         case "SET_USERS_ACTION":
             return {
@@ -35,5 +52,21 @@ export function usersReducer(state = usersInitialState, action: UsersAction) {
         default:
             return state
     }
+}
 
+export function userTableSettingsReducer(state = userTableInitialState, action: UserTableFilterAction | UserTableSortTypeAction) : UserTableSettingsState {
+    switch (action.type) {
+        case "USER_TABLE_FILTER_ACTION":
+            return {
+                ...state,
+                usernameFilterWord: action.usernameFilterWord,
+            }
+        case "USER_TABLE_SORT_TYPE_ACTION":
+            return {
+                ...state,
+                sortType: action.sortType
+            }
+        default:
+            return state
+    }
 }

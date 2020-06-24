@@ -22,7 +22,7 @@ export const thunkLogin = (log: string, pass: string): AppThunk => async dispatc
         })
         .then((response) => response.json())
         .then((token) => {
-            setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) //30 дней
+            setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) // 30 дней
             dispatch(setLoginStatus(LoginStatus.LOGIN_SUCCESSFUL))
             return token
         })
@@ -44,6 +44,7 @@ export const thunkFetchUsers = (): AppThunk => async dispatch => {
         return dispatch(thunkLogout())
     }
     const token = getCookie("token");
+    dispatch(setUsers([],UsersFetchStatus.FETCHING_IN_PROGRESS))
 
     const api = `${API}/api/v1/users/`;
     return await fetch(api, {

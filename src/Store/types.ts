@@ -33,7 +33,7 @@ export interface LoginState {
     loginErrorMsg: string
 }
 
-export interface LoginAction extends LoginState{
+export interface LoginAction extends LoginState {
     type: typeof LOGIN_ACTION
 }
 
@@ -43,10 +43,24 @@ export interface UsersState {
     fetchErrorMsg: string
 }
 
-export interface UsersAction extends UsersState{
+export interface UsersAction extends UsersState {
     type: typeof SET_USERS_ACTION
 }
 
+export interface UserTableSettingsState {
+    usernameFilterWord: string,
+    sortType: SortType
+}
+
+export interface UserTableFilterAction {
+    type: typeof USER_TABLE_FILTER_ACTION,
+    usernameFilterWord: string
+}
+
+export interface UserTableSortTypeAction {
+    type: typeof USER_TABLE_SORT_TYPE_ACTION,
+    sortType: SortType
+}
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
     RootState,
