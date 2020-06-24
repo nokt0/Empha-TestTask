@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/nokt0/Empha-TestTask/static/css/main.8917f35e.chunk.css",
-    "main.js": "/nokt0/Empha-TestTask/static/js/main.d81e91f7.chunk.js",
-    "main.js.map": "/nokt0/Empha-TestTask/static/js/main.d81e91f7.chunk.js.map",
-    "runtime-main.js": "/nokt0/Empha-TestTask/static/js/runtime-main.73db4181.js",
-    "runtime-main.js.map": "/nokt0/Empha-TestTask/static/js/runtime-main.73db4181.js.map",
-    "static/css/2.af3c1da9.chunk.css": "/nokt0/Empha-TestTask/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.824ec24b.chunk.js": "/nokt0/Empha-TestTask/static/js/2.824ec24b.chunk.js",
-    "static/js/2.824ec24b.chunk.js.map": "/nokt0/Empha-TestTask/static/js/2.824ec24b.chunk.js.map",
-    "index.html": "/nokt0/Empha-TestTask/index.html",
-    "precache-manifest.e78545c3bb7ff17335aefe1fa7c2d04b.js": "/nokt0/Empha-TestTask/precache-manifest.e78545c3bb7ff17335aefe1fa7c2d04b.js",
-    "service-worker.js": "/nokt0/Empha-TestTask/service-worker.js",
-    "static/css/2.af3c1da9.chunk.css.map": "/nokt0/Empha-TestTask/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.8917f35e.chunk.css.map": "/nokt0/Empha-TestTask/static/css/main.8917f35e.chunk.css.map",
-    "static/js/2.824ec24b.chunk.js.LICENSE.txt": "/nokt0/Empha-TestTask/static/js/2.824ec24b.chunk.js.LICENSE.txt"
+    "main.css": "/Empha-TestTask/static/css/main.8917f35e.chunk.css",
+    "main.js": "/Empha-TestTask/static/js/main.232534bb.chunk.js",
+    "main.js.map": "/Empha-TestTask/static/js/main.232534bb.chunk.js.map",
+    "runtime-main.js": "/Empha-TestTask/static/js/runtime-main.19e685f6.js",
+    "runtime-main.js.map": "/Empha-TestTask/static/js/runtime-main.19e685f6.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/Empha-TestTask/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.824ec24b.chunk.js": "/Empha-TestTask/static/js/2.824ec24b.chunk.js",
+    "static/js/2.824ec24b.chunk.js.map": "/Empha-TestTask/static/js/2.824ec24b.chunk.js.map",
+    "index.html": "/Empha-TestTask/index.html",
+    "precache-manifest.37f79138d93b2669dc08a8f98859840c.js": "/Empha-TestTask/precache-manifest.37f79138d93b2669dc08a8f98859840c.js",
+    "service-worker.js": "/Empha-TestTask/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/Empha-TestTask/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.8917f35e.chunk.css.map": "/Empha-TestTask/static/css/main.8917f35e.chunk.css.map",
+    "static/js/2.824ec24b.chunk.js.LICENSE.txt": "/Empha-TestTask/static/js/2.824ec24b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.73db4181.js",
+    "static/js/runtime-main.19e685f6.js",
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.824ec24b.chunk.js",
     "static/css/main.8917f35e.chunk.css",
-    "static/js/main.d81e91f7.chunk.js"
+    "static/js/main.232534bb.chunk.js"
   ]
 }
