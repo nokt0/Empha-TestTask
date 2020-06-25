@@ -10,6 +10,7 @@ import {thunkFetchUsers} from "../Store/thunks";
 
 export default function Users() {
     const loginStatus: LoginStatus = useSelector((state: RootState) => state.login.loginStatus)
+
     const dispatch = useDispatch();
     dispatch(thunkFetchUsers())
 

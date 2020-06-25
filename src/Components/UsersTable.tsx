@@ -4,6 +4,7 @@ import React from "react";
 import {RootState} from "../Store/store";
 import {useSelector} from "react-redux";
 import {SortType} from "../Store/types";
+import { StyleSheet, css } from 'aphrodite';
 
 export default function UsersTable() {
     const usersArray: any = useSelector((state: RootState) => state.users.users)
@@ -38,8 +39,8 @@ export default function UsersTable() {
     }
 
     return (
-        <Table variant="dark" className="" responsive  bordered hover size="sm">
-            <thead >
+        <Table variant="dark" className={css(styles.wordWrap)} responsive  bordered hover size="sm">
+            <thead className={css(styles.noWrap)}>
             <tr>
                 <th>id</th>
                 <th>Username</th>
@@ -55,14 +56,14 @@ export default function UsersTable() {
             {usersArray.sort(sortUsers).filter(filterUsers).map((user: User) => {
                 return (
                     <tr>
-                        <td>{user.id}</td>
-                        <td>{user.username}</td>
-                        <td>{user.first_name}</td>
-                        <td>{user.last_name}</td>
-                        <td>{user.password}</td>
-                        <td>{user.is_active ? "true" : "false"}</td>
-                        <td>{user.last_login}</td>
-                        <td>{user.is_superuser ? "true" : "false"}</td>
+                        <td style={{'minWidth': '40px'}}>{user.id}</td>
+                        <td style={{'minWidth': '120px'}}>{user.username}</td>
+                        <td style={{'minWidth': '120px'}}>{user.first_name}</td>
+                        <td style={{'minWidth': '150px'}}>{user.last_name}</td>
+                        <td style={{'minWidth': '50px'}}>{user.password}</td>
+                        <td style={{'minWidth': '74px'}}>{user.is_active ? "true" : "false"}</td>
+                        <td style={{'minWidth': '100px'}}>{user.last_login}</td>
+                        <td style={{'minWidth': '74px'}}>{user.is_superuser ? "true" : "false"}</td>
                     </tr>
                 )
             })}
@@ -70,3 +71,12 @@ export default function UsersTable() {
         </Table>
     )
 }
+
+const styles = StyleSheet.create({
+    wordWrap:{
+        wordBreak: 'break-all'
+},
+    noWrap:{
+        whiteSpace: 'nowrap'
+    }
+})

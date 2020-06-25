@@ -5,6 +5,7 @@ import {changeUserTableFilter, changeUserTableSortType} from "../Store/actions";
 import {thunkFetchUsers} from "../Store/thunks";
 import {SortType, UsersFetchStatus} from "../Store/types";
 import {RootState} from "../Store/store";
+import ErrorMessage from "./ErrorMessage";
 
 export function TableMenu() {
 
@@ -40,6 +41,8 @@ export function TableMenu() {
 
     return (
         <div>
+            {fetchStatus === UsersFetchStatus.FETCHING_HAS_ERRORED
+                ? (<ErrorMessage msg={"Fetch Error"}/>) : ""}
             <Card bg="light">
                 <Card.Header>Menu</Card.Header>
                 <Card.Body>
@@ -54,7 +57,7 @@ export function TableMenu() {
                                               }}>
                                 </Form.Control>
                             </Col>
-                            <Col md="auto" xs="8">
+                            <Col md="auto" xs="7">
                                 <Form.Label>Sort:</Form.Label>
                                 <Form.Control as="select" className="mr-sm-2" custom value={sortingType}
                                               onChange={event => {
@@ -65,7 +68,7 @@ export function TableMenu() {
                                     <option value="DESC">Descending</option>
                                 </Form.Control>
                             </Col>
-                            <Col md="auto" xs="4">
+                            <Col md="auto" className="p-xs-auto" xs="4">
                                 {fetchStatus === UsersFetchStatus.FETCHING_IN_PROGRESS
                                 ? (<Button variant="primary" disabled>
                                     <Spinner
@@ -76,8 +79,8 @@ export function TableMenu() {
                                         aria-hidden="true"
                                     />
                                     Loading...
-                                </Button>)
-                                    : (<Col xs="auto"><Button onClick={() => dispatch(thunkFetchUsers())}>Refresh</Button></Col>)
+                                    </Button>)
+                                    : (<Button onClick={() => dispatch(thunkFetchUsers())}>Refresh</Button>)
                             }
                             </Col>
                         </Form.Row>
