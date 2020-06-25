@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ea358566eabd27c792f7df78547cd46e",
+    "revision": "d3d1389119cdef6ac60ed2e82e4f546d",
     "url": "/Empha-TestTask/index.html"
   },
   {
-    "revision": "367782b315a0605a494f",
+    "revision": "c7eb0e7fcda0b7e7cade",
     "url": "/Empha-TestTask/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "1a211c8a72a58da904f5",
+    "revision": "7b8b4072fcd3ba80a1fd",
     "url": "/Empha-TestTask/static/css/main.1c3fdcaf.chunk.css"
   },
   {
-    "revision": "367782b315a0605a494f",
-    "url": "/Empha-TestTask/static/js/2.352b10aa.chunk.js"
+    "revision": "c7eb0e7fcda0b7e7cade",
+    "url": "/Empha-TestTask/static/js/2.3e8b5474.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/Empha-TestTask/static/js/2.352b10aa.chunk.js.LICENSE.txt"
+    "url": "/Empha-TestTask/static/js/2.3e8b5474.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1a211c8a72a58da904f5",
-    "url": "/Empha-TestTask/static/js/main.23360cc5.chunk.js"
+    "revision": "7b8b4072fcd3ba80a1fd",
+    "url": "/Empha-TestTask/static/js/main.e2531233.chunk.js"
   },
   {
     "revision": "e97c3ec771af004d94e3",
