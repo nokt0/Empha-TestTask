@@ -11,8 +11,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false)
 
-    const selectLoginStatus = (state: RootState) => state.login.loginStatus
-    const loginStatus: any = useSelector(selectLoginStatus)
+    const loginStatus: any = useSelector((state: RootState) => state.login.loginStatus)
     const dispatch = useDispatch()
 
     function submit(event: ChangeEvent<any>) {

@@ -15,7 +15,7 @@ export default function Users() {
 
     return (
         <div>
-            <Jumbotron className="min-vh-100 align-items-center">
+            <Jumbotron className="min-vh-100 m-auto align-items-center">
                 <Container>
                     {loginStatus === LoginStatus.LOGIN_SUCCESSFUL ?
                         (<div>
