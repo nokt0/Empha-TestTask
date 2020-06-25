@@ -73,12 +73,11 @@ export function TableMenu() {
                                     ? (<Button variant="primary" disabled>
                                         <Spinner
                                             as="span"
-                                            animation="grow"
+                                            animation="border"
                                             size="sm"
                                             role="status"
                                             aria-hidden="true"
                                         />
-                                        Loading...
                                     </Button>)
                                     : (<Button onClick={() => dispatch(thunkFetchUsers())}>Refresh</Button>)
                                 }
