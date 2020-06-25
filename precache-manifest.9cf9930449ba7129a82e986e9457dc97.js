@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "057c836d77f14e55c677c11502bd020b",
+    "revision": "a0e6b52a6ce71b60042a8207fef4be8e",
     "url": "/Empha-TestTask/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Empha-TestTask/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "1af345971406e952a007",
+    "revision": "3b809f29ce99369fc853",
     "url": "/Empha-TestTask/static/css/main.1c3fdcaf.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Empha-TestTask/static/js/2.c170dfbf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1af345971406e952a007",
-    "url": "/Empha-TestTask/static/js/main.f0e2b758.chunk.js"
+    "revision": "3b809f29ce99369fc853",
+    "url": "/Empha-TestTask/static/js/main.e1ba2da8.chunk.js"
   },
   {
     "revision": "e97c3ec771af004d94e3",
