@@ -1,7 +1,7 @@
 import fetchMock from "fetch-mock";
-import {API, LoginStatus, UsersAction, UsersFetchStatus} from "../types";
+import {API, LoginAction, LoginStatus, UsersAction, UsersFetchStatus} from "../types";
 import {setLoginStatus, setUsers} from "../actions";
-import {thunkFetchUsers, thunkLogin} from "../thunks";
+import {thunkFetchUsers, thunkLogin, thunkLogout} from "../thunks";
 import createMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import {AnyAction} from "redux"
@@ -27,27 +27,34 @@ describe('async actions', () => {
         const store = mockStore({})
 
 
-        // @ts-ignore
-        store.dispatch(thunkLogin("test", "ssss"))
+        store.dispatch(thunkLogin("test", "ssss") as unknown as AnyAction)
             .then(() => {
-                const actions = store.getActions()
                 expect(store.getActions()).toEqual(expectedActions)
             })
     })
 
-    it('Fetch Users action',() => {
-        fetchMock.getOnce(`${API}/api/v1/users/`,{
+    it('Logout', () => {
+        const store = mockStore({})
+        const expectedActions: LoginAction[] = [setLoginStatus(LoginStatus.NOT_LOGGED_IN)]
+
+        store.dispatch(thunkLogout() as unknown as AnyAction).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            }
+        )
+    })
+
+    it('Fetch Users action', () => {
+        fetchMock.getOnce(`${API}/api/v1/users/`, {
             headers: {'content-type': 'application/json'},
             body: {
-                'users' : testUsers
+                'users': testUsers
             }
         })
 
         const store = mockStore({})
-        const expectedActions : UsersAction[] = [setUsers([],UsersFetchStatus.NOT_FETCHED),setUsers(testUsers,UsersFetchStatus.FETCHED_SUCCESSFUL)]
+        const expectedActions: UsersAction[] = [setUsers([], UsersFetchStatus.NOT_FETCHED), setUsers(testUsers, UsersFetchStatus.FETCHED_SUCCESSFUL)]
 
         store.dispatch(thunkFetchUsers() as unknown as AnyAction).then(() => {
-            const actions = store.getActions()
             expect(store.getActions()).toEqual(expectedActions)
         })
     })

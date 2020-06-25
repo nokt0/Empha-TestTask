@@ -70,18 +70,18 @@ export function TableMenu() {
                             </Col>
                             <Col md="auto" className="p-xs-auto" xs="4">
                                 {fetchStatus === UsersFetchStatus.FETCHING_IN_PROGRESS
-                                ? (<Button variant="primary" disabled>
-                                    <Spinner
-                                        as="span"
-                                        animation="grow"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                    Loading...
+                                    ? (<Button variant="primary" disabled>
+                                        <Spinner
+                                            as="span"
+                                            animation="grow"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        />
+                                        Loading...
                                     </Button>)
                                     : (<Button onClick={() => dispatch(thunkFetchUsers())}>Refresh</Button>)
-                            }
+                                }
                             </Col>
                         </Form.Row>
 

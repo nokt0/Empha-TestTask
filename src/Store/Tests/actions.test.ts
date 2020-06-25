@@ -1,7 +1,8 @@
-import createMockStore from "redux-mock-store";
-import {changeUserTableFilter, changeUserTableSortType, setUsers} from "../actions";
-import thunk from "redux-thunk";
+import {changeUserTableFilter, changeUserTableSortType, setLoginStatus, setRememberMe, setUsers} from "../actions";
 import {
+    LOGIN_ACTION,
+    LoginStatus,
+    REMEMBER_ME_ACTION,
     SET_USERS_ACTION,
     SortType,
     USER_TABLE_FILTER_ACTION,
@@ -10,7 +11,6 @@ import {
 } from "../types";
 import User from "../Model/User";
 
-const mockStore = createMockStore([thunk])
 export const testUsers: User[] = [{
     id: 1,
     username: "sd",
@@ -22,7 +22,7 @@ export const testUsers: User[] = [{
     is_superuser: false
 }];
 
-describe('sync actions', () => {
+describe('Sync Actions', () => {
     it('SET_USERS_ACTION', () => {
 
         const action = {
@@ -34,8 +34,14 @@ describe('sync actions', () => {
         expect(setUsers(testUsers, UsersFetchStatus.FETCHED_SUCCESSFUL)).toEqual(action)
     })
 
-    it('SET_LOGIN_STATUS', () => {
+    it('LOGIN_ACTION', () => {
+        const action = {
+            type: LOGIN_ACTION,
+            loginStatus: LoginStatus.LOGIN_SUCCESSFUL,
+            loginErrorMsg: ""
+        }
 
+        expect(setLoginStatus(action.loginStatus, action.loginErrorMsg))
     })
 
     it('USER_TABLE_FILTER_ACTION', () => {
@@ -47,13 +53,22 @@ describe('sync actions', () => {
         expect(changeUserTableFilter(action.usernameFilterWord)).toEqual(action)
     })
 
-    it('USER_TABLE_FILTER_ACTION', () => {
+    it('USER_TABLE_SORT_TYPE_ACTION', () => {
         const action = {
             type: USER_TABLE_SORT_TYPE_ACTION,
             sortType: SortType.ASCENDING
         }
 
         expect(changeUserTableSortType(action.sortType)).toEqual(action)
+    })
+
+    it('REMEMBER_ME_ACTION', () => {
+        const action = {
+            type: REMEMBER_ME_ACTION,
+            remember: true
+        }
+
+        expect(setRememberMe(action.remember)).toEqual(action)
     })
 })
 

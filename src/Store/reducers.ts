@@ -14,19 +14,19 @@ import {
     UserTableSortTypeAction
 } from "./types";
 
-const loginInitialState: LoginState = {
+export const loginInitialState: LoginState = {
     loginStatus: LoginStatus.NOT_LOGGED_IN,
     loginErrorMsg: "",
     remember: false
 }
 
-const usersInitialState: UsersState = {
+export const usersInitialState: UsersState = {
     users: [],
     fetchStatus: UsersFetchStatus.NOT_FETCHED,
     fetchErrorMsg: ""
 }
 
-const userTableInitialState: UserTableSettingsState = {
+export const userTableInitialState: UserTableSettingsState = {
     sortType: SortType.ASCENDING,
     usernameFilterWord: ""
 }

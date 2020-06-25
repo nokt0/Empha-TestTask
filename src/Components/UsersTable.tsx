@@ -4,7 +4,7 @@ import React from "react";
 import {RootState} from "../Store/store";
 import {useSelector} from "react-redux";
 import {SortType} from "../Store/types";
-import { StyleSheet, css } from 'aphrodite';
+import {css, StyleSheet} from 'aphrodite';
 
 export default function UsersTable() {
     const usersArray: any = useSelector((state: RootState) => state.users.users)
@@ -39,7 +39,7 @@ export default function UsersTable() {
     }
 
     return (
-        <Table variant="dark" className={css(styles.wordWrap)} responsive  bordered hover size="sm">
+        <Table variant="dark" className={css(styles.wordWrap)} responsive bordered hover size="sm">
             <thead className={css(styles.noWrap)}>
             <tr>
                 <th>id</th>
@@ -73,10 +73,10 @@ export default function UsersTable() {
 }
 
 const styles = StyleSheet.create({
-    wordWrap:{
+    wordWrap: {
         wordBreak: 'break-all'
-},
-    noWrap:{
+    },
+    noWrap: {
         whiteSpace: 'nowrap'
     }
 })

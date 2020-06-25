@@ -16,23 +16,23 @@ function App() {
     return (
         <Provider store={store}>
 
-        <Router basename="/Empha-TestTask">
-            <NavigationBar/>
-            <Switch>
-                <Route exact path="/">
-                    <Welcome/>
-                </Route>
-                <Route exact path="/login">
-                    <Login/>
-                </Route>
-                <Route exact path="/users">
-                    <Users/>
-                </Route>
-                <Route exact path="/logout">
-                    <Logout/>
-                </Route>
-            </Switch>
-        </Router>
+            <Router basename="/Empha-TestTask">
+                <NavigationBar/>
+                <Switch>
+                    <Route exact path="/">
+                        <Welcome/>
+                    </Route>
+                    <Route exact path="/login">
+                        <Login/>
+                    </Route>
+                    <Route exact path="/users">
+                        <Users/>
+                    </Route>
+                    <Route exact path="/logout">
+                        <Logout/>
+                    </Route>
+                </Switch>
+            </Router>
         </Provider>
     );
 }

@@ -41,8 +41,10 @@ export default function Login() {
                                 </Form.Group>
                                 <Form.Group controlId="formBasicCheckbox">
                                     {/* tslint:disable-next-line:no-console */}
-                                    <Form.Check onChange={(event: ChangeEvent<any>) => setRememberMe(event.target.checked)} type="checkbox"
-                                                label="Check me out"/>
+                                    <Form.Check
+                                        onChange={(event: ChangeEvent<any>) => setRememberMe(event.target.checked)}
+                                        type="checkbox"
+                                        label="Check me out"/>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Submit

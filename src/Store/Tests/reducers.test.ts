@@ -1,27 +1,29 @@
-import {loginReducer, usersReducer} from "../reducers";
+import {
+    loginInitialState,
+    loginReducer,
+    usersInitialState,
+    usersReducer,
+    userTableInitialState,
+    userTableSettingsReducer
+} from "../reducers";
 import {
     LOGIN_ACTION,
     LoginAction,
-    LoginState,
     LoginStatus,
     SET_USERS_ACTION,
     UsersAction,
     UsersFetchStatus,
-    UsersState
+    UserTableFilterAction
 } from "../types";
 import {testUsers} from "./actions.test";
 
 describe('reducers', () => {
-    it('LOGIN_IN_PROGRESS', () => {
-        const loginInitialState: LoginState = {
-            loginStatus: LoginStatus.NOT_LOGGED_IN,
-            loginErrorMsg: ""
-        }
+    it('LOGIN_REDUCER', () => {
 
         const action: LoginAction = {
             type: LOGIN_ACTION,
             loginStatus: LoginStatus.LOGIN_IN_PROGRESS,
-            loginErrorMsg: ""
+            loginErrorMsg: "",
         }
         expect(loginReducer(loginInitialState, action)).toEqual({
             ...loginInitialState,
@@ -30,13 +32,7 @@ describe('reducers', () => {
         })
     })
 
-    it('SET_USERS_ACTION', () => {
-
-        const usersInitialState: UsersState = {
-            users: [],
-            fetchStatus: UsersFetchStatus.NOT_FETCHED,
-            fetchErrorMsg: ""
-        }
+    it('USERS REDUCER', () => {
 
         const action: UsersAction = {
             type: SET_USERS_ACTION,
@@ -44,9 +40,20 @@ describe('reducers', () => {
             fetchStatus: UsersFetchStatus.NOT_FETCHED,
             fetchErrorMsg: ""
         }
-        expect(usersReducer(usersInitialState,action)).toEqual({
+        expect(usersReducer(usersInitialState, action)).toEqual({
             ...usersInitialState,
             users: action.users
+        })
+    })
+
+    it('USER TABLE SETTINGS REDUCER', () => {
+        const action: UserTableFilterAction = {
+            type: "USER_TABLE_FILTER_ACTION",
+            usernameFilterWord: "user"
+        }
+        expect(userTableSettingsReducer(userTableInitialState, action)).toEqual({
+            ...userTableInitialState,
+            usernameFilterWord: action.usernameFilterWord
         })
     })
 })

@@ -9,5 +9,5 @@ export default function ErrorMessage(props: { msg: string }) {
                 {props.msg}
             </Card.Body>
         </Card>
-)
+    )
 }

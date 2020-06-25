@@ -3,6 +3,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {loginReducer, usersReducer, userTableSettingsReducer} from "./reducers";
 import thunk from 'redux-thunk';
 import {LoginState, UsersState, UserTableSettingsState} from "./types";
+
 // tslint:disable:no-console
 
 export interface RootState {
