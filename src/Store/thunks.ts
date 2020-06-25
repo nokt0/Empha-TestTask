@@ -15,23 +15,33 @@ export const thunkLogin = (log: string, pass: string, remember: boolean = false)
     })
         .then((response) => {
             if (!response.ok) {
-                dispatch(setLoginStatus(LoginStatus.LOGIN_HAS_ERRORED, response.statusText))
-                throw new Error(response.statusText);
+                if (response.status === 400) {
+                    throw new Error("400")
+                } else {
+                    throw new Error(response.statusText)
+                }
             }
             return response;
         })
         .then((response) => response.json())
         .then((token) => {
-            if (remember) {
-                setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) // 30 дней
-            } else {
-                setCookie("token", token.token, {})
+            if (token?.token) {
+                if (remember) {
+                    setCookie("token", token.token, {'max-age': Date.now() + 2_592_000}) // 30 дней
+                } else {
+                    setCookie("token", token.token, {})
+                }
+                dispatch(setLoginStatus(LoginStatus.LOGIN_SUCCESSFUL))
+            }else {
+                throw Error("Doesnt have token")
             }
-            dispatch(setLoginStatus(LoginStatus.LOGIN_SUCCESSFUL))
             return token
         })
-        .catch((response) => {
-            return dispatch(setLoginStatus(LoginStatus.LOGIN_HAS_ERRORED, response.statusText))
+        .catch((e: Error) => {
+            if(e.message === "400"){
+                return dispatch(setLoginStatus(LoginStatus.WRONG_CREDENTIAL,"Wrong Credentials"));
+            }
+            return dispatch(setLoginStatus(LoginStatus.LOGIN_HAS_ERRORED, e.message))
         })
 }
 

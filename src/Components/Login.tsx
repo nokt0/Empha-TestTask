@@ -5,13 +5,14 @@ import {RootState} from "../Store/store";
 import {useDispatch, useSelector} from "react-redux";
 import {LoginStatus} from "../Store/types";
 import {thunkLogin} from "../Store/thunks";
+import ErrorMessage from "./ErrorMessage";
 
 export default function Login() {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false)
 
-    const loginStatus: any = useSelector((state: RootState) => state.login.loginStatus)
+    const loginStatus: LoginStatus = useSelector((state: RootState) => state.login.loginStatus)
     const dispatch = useDispatch()
 
     function submit(event: ChangeEvent<any>) {
@@ -27,20 +28,37 @@ export default function Login() {
                     <Col md>
                         {loginStatus === LoginStatus.LOGIN_SUCCESSFUL ?
                             (<Redirect to="/users"/>)
-                            : (<Form onSubmit={submit}>
+                            : (
+                                <Form onSubmit={submit}>
+                                    {loginStatus === LoginStatus.LOGIN_HAS_ERRORED ? (<ErrorMessage msg="No internet"/>) : ("")}
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Login</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter login"
-                                                  onChange={(event) => setLogin(event.target.value)}/>
+                                    {loginStatus !== LoginStatus.WRONG_CREDENTIAL ?
+                                        (
+                                            <Form.Control type="text" placeholder="Enter login"
+                                                          onChange={(event) => setLogin(event.target.value)}/>)
+                                        : (
+                                            <Form.Control isInvalid type="text" placeholder="Enter login"
+                                                          onChange={(event) => setLogin(event.target.value)}/>
+                                        )}
+                                    <Form.Control.Feedback type="invalid">Wrong login or
+                                        password</Form.Control.Feedback>
                                 </Form.Group>
 
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password"
-                                                  onChange={(event) => setPassword(event.target.value)}/>
+                                    {loginStatus !== LoginStatus.WRONG_CREDENTIAL ?
+                                        (
+                                            <Form.Control type="password" placeholder="Password"
+                                                          onChange={(event) => setPassword(event.target.value)}/>)
+                                        : (
+                                            <Form.Control isInvalid type="password" placeholder="Password"
+                                                          onChange={(event) => setPassword(event.target.value)}/>
+                                        )}
+                                    <Form.Control.Feedback type="invalid">Wrong login or
+                                        password</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group controlId="formBasicCheckbox">
-                                    {/* tslint:disable-next-line:no-console */}
                                     <Form.Check
                                         onChange={(event: ChangeEvent<any>) => setRememberMe(event.target.checked)}
                                         type="checkbox"
@@ -49,7 +67,8 @@ export default function Login() {
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
-                            </Form>)
+                            </Form>
+                            )
                         }
                     </Col>
                     <Col className="col-md-3 col-xl-4"/>
