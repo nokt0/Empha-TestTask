@@ -2,15 +2,16 @@ import User from "../Store/Model/User";
 import {Table} from "react-bootstrap";
 import React from "react";
 import {RootState} from "../Store/store";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {SortType} from "../Store/types";
 import {css, StyleSheet} from 'aphrodite';
+import {changeUserTableSortType} from "../Store/actions";
 
 export default function UsersTable() {
     const usersArray: any = useSelector((state: RootState) => state.users.users)
-    const sortType: any = useSelector((state: RootState) => state.userTable.sortType)
+    const selectSortType: any = useSelector((state: RootState) => state.userTable.sortType)
     const usernameFilterWord: any = useSelector((state: RootState) => state.userTable.usernameFilterWord)
-
+    const dispatch = useDispatch();
 
     function sortUsers(user1: User, user2: User) {
         const sort = (u1: User, u2: User) => {
@@ -23,7 +24,7 @@ export default function UsersTable() {
             return 0
         }
 
-        switch (sortType) {
+        switch (selectSortType) {
             case SortType.ASCENDING:
                 return sort(user1, user2)
             case SortType.DESCENDING:
@@ -38,11 +39,31 @@ export default function UsersTable() {
         return filter(user);
     }
 
+    function toggleSortType() {
+        switch (selectSortType) {
+            case SortType.ASCENDING:
+                dispatch(changeUserTableSortType(SortType.DESCENDING));
+                break;
+            case SortType.DESCENDING:
+                dispatch(changeUserTableSortType(SortType.ASCENDING))
+                break;
+        }
+    }
+
+    function showArrow() {
+        switch (selectSortType) {
+            case SortType.ASCENDING:
+                return String.fromCharCode(9650) // ▲ - char
+            case SortType.DESCENDING:
+                return String.fromCharCode(9660) // ▼ - char
+        }
+    }
+
     return (
         <Table variant="dark" className={css(styles.wordWrap)} responsive bordered hover size="sm">
             <thead className={css(styles.noWrap)}>
             <tr>
-                <th>id</th>
+                <th onClick={() => toggleSortType()}>id {showArrow()}</th>
                 <th>Username</th>
                 <th>First Name</th>
                 <th>Last Name</th>
