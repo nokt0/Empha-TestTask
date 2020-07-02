@@ -25,7 +25,7 @@ export function TableMenu() {
                 <Card.Body>
                     <Form>
                         <Form.Row className="align-items-end">
-                            <Col md="auto" xs="12">
+                            <Col sm="9"  md="3" xs="12">
                                 <Form.Label>Filter:</Form.Label>
                                 <Form.Control type="text" placeholder="username" value={filterWord}
                                               onChange={event => {
@@ -34,7 +34,7 @@ export function TableMenu() {
                                               }}>
                                 </Form.Control>
                             </Col>
-                            <Col md="auto" className="p-xs-auto" xs="4">
+                            <Col sm="3" md="auto" className="pt-2 pt-md-0" xs="12">
                                 {fetchStatus === UsersFetchStatus.FETCHING_IN_PROGRESS
                                     ? (<Button variant="primary" disabled>
                                         <Spinner

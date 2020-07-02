@@ -63,7 +63,9 @@ export default function UsersTable() {
         <Table variant="dark" className={css(styles.wordWrap)} responsive bordered hover size="sm">
             <thead className={css(styles.noWrap)}>
             <tr>
-                <th onClick={() => toggleSortType()}>id {showArrow()}</th>
+                <th onClick={() => toggleSortType()}>
+                    id {showArrow()}
+                </th>
                 <th>Username</th>
                 <th>First Name</th>
                 <th>Last Name</th>
